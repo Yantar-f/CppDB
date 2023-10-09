@@ -1,0 +1,3 @@
+/home/yantar/CLionProjects/OSLab2/cmake-build-debug/CMakeFiles/OSLab2.dir
+/home/yantar/CLionProjects/OSLab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/yantar/CLionProjects/OSLab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
