@@ -13,7 +13,7 @@ Logger::Logger(const char* actor_name) :
         error_prefix(std::string("[\033[1;31mERROR\033[0m]:[\033[95m").append(actor_name).append("\033[0m]:")),
         fatal_prefix(std::string("[\033[1;91mFATAL\033[0m]:[\033[95m").append(actor_name).append("\033[0m]:")){}
 
-void Logger::log_info(const char *message) {
+void Logger::log_info(const char* message) {
     print(info_prefix, message);
 }
 
@@ -29,7 +29,7 @@ void Logger::log_fatal(const char* message) {
     print(fatal_prefix, message);
 }
 
-void Logger::print(std::string &log_prefix, const char* message) {
+void Logger::print(std::string& log_prefix, const char* message) {
     time_t now = time(nullptr);
     tm* gmt = gmtime(&now);
 

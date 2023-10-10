@@ -67,6 +67,12 @@ build CMakeFiles/OSLab2.dir/Repository.cpp.o: CXX_COMPILER__OSLab2_Debug /home/y
   OBJECT_DIR = CMakeFiles/OSLab2.dir
   OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir
 
+build CMakeFiles/OSLab2.dir/CommandHandler.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/CommandHandler.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/CommandHandler.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target OSLab2
@@ -75,7 +81,7 @@ build CMakeFiles/OSLab2.dir/Repository.cpp.o: CXX_COMPILER__OSLab2_Debug /home/y
 #############################################
 # Link the executable OSLab2
 
-build OSLab2: CXX_EXECUTABLE_LINKER__OSLab2_Debug CMakeFiles/OSLab2.dir/main.cpp.o CMakeFiles/OSLab2.dir/Logger.cpp.o CMakeFiles/OSLab2.dir/Repository.cpp.o
+build OSLab2: CXX_EXECUTABLE_LINKER__OSLab2_Debug CMakeFiles/OSLab2.dir/main.cpp.o CMakeFiles/OSLab2.dir/Logger.cpp.o CMakeFiles/OSLab2.dir/Repository.cpp.o CMakeFiles/OSLab2.dir/CommandHandler.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/OSLab2.dir
   POST_BUILD = :

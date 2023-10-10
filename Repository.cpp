@@ -13,29 +13,29 @@
 #define FILE_SIZE (FILE_ENTITY_CAPACITY * STRUCT_SIZE)
 
 Repository::Repository(const char *filename) {
-    logger.log_info("Opening entity file");
+    logger.log_info("opening file");
 
     int file_descriptor = open(filename, O_RDWR|O_CREAT, (mode_t)0666);
 
     if (file_descriptor == -1) {
-        logger.log_error("File can`t be reached");
+        logger.log_fatal("file can`t be reached");
         exit(1);
     }
 
     struct stat file_attrs;
 
-    logger.log_info("Getting file attrs");
+    logger.log_info("getting file attrs");
 
     if (stat(filename, &file_attrs) == -1) {
-        logger.log_error("File attrs can`t be reached");
+        logger.log_fatal("file attrs can`t be reached");
         exit(1);
     }
 
     if (ftruncate(file_descriptor, FILE_SIZE) == -1) {
-        logger.log_error("File truncate error");
+        logger.log_fatal("file truncate error");
     }
 
-    logger.log_info("Mapping entity");
+    logger.log_info("mapping file");
 
     initial_ptr = (Entity*) mmap(
         nullptr,
@@ -49,7 +49,7 @@ Repository::Repository(const char *filename) {
     close(file_descriptor);
 
     if (initial_ptr == MAP_FAILED) {
-        logger.log_error("File can`t be mapped");
+        logger.log_fatal("file can`t be mapped");
         exit(1);
     }
 
@@ -58,17 +58,36 @@ Repository::Repository(const char *filename) {
 
 Repository::~Repository() {
     if (munmap((void*) initial_ptr, FILE_SIZE) == -1) {
-        logger.log_error("Unmapping file error");
+        logger.log_fatal("unmapping file error");
         exit(1);
     }
 }
 
 void Repository::add(Entity &entity) {
+    if (first_free_cell == -1) {
+        logger.log_error("no capacity to save entity");
+        return;
+    }
 
+    logger.log_info("saving entity");
+
+    Entity* new_entity = initial_ptr + first_free_cell;
+
+    new_entity->key = first_free_cell;
+    new_entity->timestamp = entity.timestamp;
+    /*
+     *
+     */
+
+    find_first_free_cell(first_free_cell);
+
+    if (first_free_cell == -1) logger.log_warn("file is completely filled in");
+
+    logger.log_info("entity saved");
 }
 
 std::vector<Entity*> Repository::get_all() {
-    logger.log_info("Getting entities");
+    logger.log_info("getting entities");
 
     Entity* tmp_ptr = initial_ptr;
     std::vector<Entity*> entities;
@@ -77,28 +96,28 @@ std::vector<Entity*> Repository::get_all() {
         if (tmp_ptr->key != 0) entities.push_back(tmp_ptr);
     }
 
-    logger.log_info("Entities received");
+    logger.log_info("entities received");
     return entities;
 }
 
 Entity* Repository::get_by_key(const int key) {
-    logger.log_info("Getting entities");
+    logger.log_info("getting entities");
 
     if (key > FILE_ENTITY_CAPACITY) {
-        logger.log_warn("Query key out of bounds");
+        logger.log_warn("query key out of bounds");
         return nullptr;
     }
 
     Entity* entity = initial_ptr + key - 1;
 
-    logger.log_info("Entities received");
+    logger.log_info("entities received");
 
     if (entity->key == 0) return nullptr;
     return entity;
 }
 
 std::vector<Entity*> Repository::get_by_condition(ICondition &condition) {
-    logger.log_info("Getting entities");
+    logger.log_info("getting entities");
 
     Entity* tmp_ptr = initial_ptr;
     std::vector<Entity*> entities;
@@ -107,12 +126,12 @@ std::vector<Entity*> Repository::get_by_condition(ICondition &condition) {
         if (condition.is_matching(tmp_ptr)) entities.push_back(tmp_ptr);
     }
 
-    logger.log_info("Entities received");
+    logger.log_info("entities received");
     return entities;
 }
 
 void Repository::delete_all() {
-    logger.log_info("Deleting entities");
+    logger.log_info("deleting entities");
 
     Entity* tmp_ptr = initial_ptr;
 
@@ -122,11 +141,11 @@ void Repository::delete_all() {
 
     first_free_cell = 0;
 
-    logger.log_info("All entities deleted");
+    logger.log_info("all entities deleted");
 }
 
 void Repository::delete_by_condition(ICondition& condition) {
-    logger.log_info("Deleting entities");
+    logger.log_info("deleting entities");
 
     Entity* tmp_ptr = initial_ptr;
     int i = 0;
@@ -147,7 +166,7 @@ void Repository::delete_by_condition(ICondition& condition) {
         ++tmp_ptr;
     }
 
-    logger.log_info("Entities deleted");
+    logger.log_info("entities deleted");
 }
 
 void Repository::initiate_first_free_cell() {
