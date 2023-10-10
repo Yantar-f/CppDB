@@ -63,23 +63,22 @@ Repository::~Repository() {
     }
 }
 
-void Repository::add(Entity &entity) {
+void Repository::add(Entity& entity) {
     if (first_free_cell == -1) {
         logger.log_error("no capacity to save entity");
         return;
     }
 
-    logger.log_info("saving entity");
-
     Entity* new_entity = initial_ptr + first_free_cell;
 
-    new_entity->key = first_free_cell;
+    new_entity->key = first_free_cell + 1;
     new_entity->timestamp = entity.timestamp;
-    /*
-     *
-     */
 
-    find_first_free_cell(first_free_cell);
+    std::copy_n(entity.name, VARCHAR_SIZE, new_entity->name);
+    std::copy_n(entity.surname, VARCHAR_SIZE, new_entity->surname);
+    std::copy_n(entity.patronymic, VARCHAR_SIZE, new_entity->patronymic);
+
+    find_first_free_cell(++first_free_cell);
 
     if (first_free_cell == -1) logger.log_warn("file is completely filled in");
 
@@ -87,16 +86,14 @@ void Repository::add(Entity &entity) {
 }
 
 std::vector<Entity*> Repository::get_all() {
-    logger.log_info("getting entities");
-
     Entity* tmp_ptr = initial_ptr;
     std::vector<Entity*> entities;
 
-    for (int i = 0; i < FILE_ENTITY_CAPACITY; i++, tmp_ptr++) {
+    for (int i = 0; i < FILE_ENTITY_CAPACITY; ++i, ++tmp_ptr) {
         if (tmp_ptr->key != 0) entities.push_back(tmp_ptr);
     }
 
-    logger.log_info("entities received");
+    logger.log_info(std::string{"entities received: "}.append(std::to_string(entities.size())).c_str());
     return entities;
 }
 
@@ -117,8 +114,6 @@ Entity* Repository::get_by_key(const int key) {
 }
 
 std::vector<Entity*> Repository::get_by_condition(ICondition &condition) {
-    logger.log_info("getting entities");
-
     Entity* tmp_ptr = initial_ptr;
     std::vector<Entity*> entities;
 
@@ -131,8 +126,6 @@ std::vector<Entity*> Repository::get_by_condition(ICondition &condition) {
 }
 
 void Repository::delete_all() {
-    logger.log_info("deleting entities");
-
     Entity* tmp_ptr = initial_ptr;
 
     for (int i = 0; i < FILE_ENTITY_CAPACITY; i++, tmp_ptr++) {

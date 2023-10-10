@@ -7,7 +7,7 @@
 #define FILE_NAME ("file1")
 
 void declare_input() {
-    std::cout << std::string("[\033[1;92mINPUT\033[0m] ---> ");
+    std::cout << "[\033[1;92mINPUT\033[0m] ---> ";
 }
 
 int main() {
@@ -15,7 +15,7 @@ int main() {
     logger.log_info("application started");
 
     Repository repository {FILE_NAME};
-    CommandHandler command_handler = CommandHandler(repository);
+    CommandHandler command_handler {repository};
     std::string input;
 
     logger.log_info("ready to accept commands");

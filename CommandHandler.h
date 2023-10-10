@@ -13,7 +13,7 @@
 class CommandHandler : public ICommandHandler {
 private:
     static const std::map <std::string, int> command_mapping;
-    Repository repository;
+    Repository& repository;
     Logger logger {"CommandHandler"};
 public:
     CommandHandler(Repository& repository);
