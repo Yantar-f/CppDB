@@ -7,10 +7,11 @@
 
 
 #include <string>
+#include "IConditionParser.h"
 
 class ICommandHandler {
 public:
-    virtual bool handle(std::string& command) = 0;
+    virtual bool handle(const std::string& command) = 0;
 };
 
 

@@ -13,11 +13,12 @@
 class CommandHandler : public ICommandHandler {
 private:
     static const std::map <std::string, int> command_mapping;
+    IConditionParser& condition_parser;
     Repository& repository;
     Logger logger {"CommandHandler"};
 public:
-    CommandHandler(Repository& repository);
-    bool handle(std::string& command);
+    CommandHandler(Repository& repository, IConditionParser& condition_parser);
+    bool handle(const std::string& command) override;
 };
 
 

@@ -9,7 +9,7 @@
 #include "Entity.h"
 
 #define FILE_ENTITY_CAPACITY (1000)
-#define STRUCT_SIZE (sizeof(struct Entity))
+#define STRUCT_SIZE (sizeof(Entity))
 #define FILE_SIZE (FILE_ENTITY_CAPACITY * STRUCT_SIZE)
 
 Repository::Repository(const char *filename) {

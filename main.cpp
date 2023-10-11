@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Logger.h"
 #include "Repository.h"
-#include "ICommandHandler.h"
 #include "CommandHandler.h"
+#include "ConditionParser.h"
 
 #define FILE_NAME ("file1")
 
@@ -15,7 +15,8 @@ int main() {
     logger.log_info("application started");
 
     Repository repository {FILE_NAME};
-    CommandHandler command_handler {repository};
+    ConditionParser condition_parser;
+    CommandHandler command_handler {repository, condition_parser};
     std::string input;
 
     logger.log_info("ready to accept commands");

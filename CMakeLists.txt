@@ -8,4 +8,4 @@ add_executable(
         Logger.h
         Logger.cpp
         Logger.h
-        Entity.h Repository.h ICondition.h Repository.cpp ICommandHandler.h CommandHandler.cpp CommandHandler.h)
+        Entity.h Repository.h ICondition.h Repository.cpp ICommandHandler.h CommandHandler.cpp CommandHandler.h Entity.cpp IConditionParser.h ConditionParser.cpp ConditionParser.h)
