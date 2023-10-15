@@ -4,7 +4,6 @@
 
 #include <sstream>
 #include <iostream>
-#include <limits>
 #include "CommandHandler.h"
 #include "Entity.h"
 
@@ -20,8 +19,6 @@
 #define EXIT_STATEMENT ("EXIT")
 #define EXIT_STATEMENT_CODE (5)
 #define CONDITION_DECLARATION ("WHERE")
-
-constexpr auto stream_max_size = std::numeric_limits<std::streamsize>::max();
 
 const std::map<std::string, char> CommandHandler::command_mapping {
     {SELECT_STATEMENT, SELECT_STATEMENT_CODE},
@@ -87,15 +84,26 @@ bool CommandHandler::handle(const std::string& command) {
                 }
 
                 std::string condition_str;
+                ICondition* condition;
                 std::getline(stream, condition_str);
 
-                ICondition* condition = condition_parser.parse(condition_str);
+                try {
+                    condition = condition_parser.parse(condition_str);
+                } catch (std::invalid_argument ex) {
+                    logger.log_error("invalid command");
+                    return true;
+                }
+
                 std::vector<Entity*> entities = repository.select(*condition);
 
                 if (!entities.empty()) show_entities(entities);
+
+                delete condition;
             }
             break;
-        } case DELETE_STATEMENT_CODE: {
+        }
+
+        case DELETE_STATEMENT_CODE: {
             if (!(stream >> buf)) {
                 repository.remove_all();
             } else {
@@ -105,16 +113,24 @@ bool CommandHandler::handle(const std::string& command) {
                 }
 
                 std::string condition_str;
+                ICondition* condition;
                 std::getline(stream, condition_str);
 
-                ICondition* condition = condition_parser.parse(condition_str);
+                try {
+                    condition = condition_parser.parse(condition_str);
+                } catch (std::invalid_argument ex) {
+                    logger.log_error("invalid command");
+                    return true;
+                }
 
                 repository.remove(*condition);
 
                 delete condition;
             }
             break;
-        } case INSERT_STATEMENT_CODE: {
+        }
+
+        case INSERT_STATEMENT_CODE: {
             if (stream.eof()) {
                 logger.log_error("invalid command");
                 return true;
@@ -131,7 +147,9 @@ bool CommandHandler::handle(const std::string& command) {
 
             repository.insert(new_entity);
             break;
-        } case UPDATE_STATEMENT_CODE: {
+        }
+
+        case UPDATE_STATEMENT_CODE: {
             if (stream.eof()) {
                 logger.log_error("invalid command");
                 return true;
@@ -146,27 +164,35 @@ bool CommandHandler::handle(const std::string& command) {
                 return true;
             }
 
-            stream.ignore(stream_max_size, ')');
-
             if (!(stream >> buf) || buf != CONDITION_DECLARATION) {
-                logger.log_error(buf.c_str());
                 logger.log_error("invalid command");
                 return true;
             }
 
-            /*
             std::string condition_str;
+            ICondition* condition;
             std::getline(stream, condition_str);
 
-            ICondition* condition = condition_parser.parse(condition_str);
+            try {
+                condition = condition_parser.parse(condition_str);
+            } catch (std::invalid_argument ex) {
+                logger.log_error("invalid command");
+                return true;
+            }
 
-            repository.update(updating_entity, *condition);*/
+            repository.update(updating_entity, *condition);
 
+            delete condition;
             break;
-        } case EXIT_STATEMENT_CODE:
+        }
+
+        case EXIT_STATEMENT_CODE: {
             return false;
-        default:
+        }
+
+        default: {
             logger.log_error("invalid command");
+        }
     }
 
     return true;

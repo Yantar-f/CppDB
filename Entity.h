@@ -37,24 +37,24 @@ public:
     }
 
     friend std::istream& operator>>(std::istream& is, Entity& entity) {
-        std::string input;
-        std::getline(is, input);
-
         int i = 0, j = 0;
+        char c = is.get();
 
-        while (input[++i] == ' ') {}
-        if (input[i] == '\0') throw std::invalid_argument("invalid input: end of line");
+        while (c == ' ') c = is.get();
+        if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
-        if (input[i] != '(') throw std::invalid_argument("invalid input: opening fail");
+        if (c != '(') throw std::invalid_argument("invalid input: opening fail");
 
-        while (input[++i] == ' ') {}
-        if (input[i] == '\0') throw std::invalid_argument("invalid input: end of line");
+        c = is.get();
 
-        while (input[i] != ',') {
-            if (input[i] == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
-            entity.name[j] = input[i];
+        while (c == ' ') c = is.get();
+        if (c == '\0') throw std::invalid_argument("invalid input: end of line");
+
+        while (c != ',') {
+            if (c == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
+            entity.name[j] = c;
+            c = is.get();
             ++j;
-            ++i;
         }
 
         while (j < VARCHAR_CAPACITY) {
@@ -63,15 +63,16 @@ public:
         }
 
         j = 0;
+        c = is.get();
 
-        while (input[++i] == ' ') {}
-        if (input[i] == '\0') throw std::invalid_argument("invalid input: end of line");
+        while (c == ' ') c = is.get();
+        if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
-        while (input[i] != ',') {
-            if (input[i] == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
-            entity.surname[j] = input[i];
+        while (c != ',') {
+            if (c == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
+            entity.surname[j] = c;
+            c = is.get();
             ++j;
-            ++i;
         }
 
         while (j < VARCHAR_CAPACITY) {
@@ -80,15 +81,16 @@ public:
         }
 
         j = 0;
+        c = is.get();
 
-        while (input[++i] == ' ') {}
-        if (input[i] == '\0') throw std::invalid_argument("invalid input: end of line");
+        while (c == ' ') c = is.get();
+        if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
-        while (input[i] != ',') {
-            if (input[i] == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
-            entity.patronymic[j] = input[i];
+        while (c != ',') {
+            if (c == '\0' || j == VARCHAR_CAPACITY) throw std::invalid_argument("invalid input: invalid char seq");
+            entity.patronymic[j] = c;
+            c = is.get();
             ++j;
-            ++i;
         }
 
         while (j < VARCHAR_CAPACITY) {
@@ -96,20 +98,22 @@ public:
             ++j;
         }
 
-        while (input[++i] == ' ') {}
-        if (input[i] == '\0') throw std::invalid_argument("invalid input: end of line");
+        c = is.get();
+
+        while (c == ' ') c = is.get();
+        if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         entity.timestamp = 0;
-        int pow = 0;
 
-        if (input[i] < 49 || input[i] > 57) throw std::invalid_argument("invalid input");
+        if (c < 49 || c > 57) throw std::invalid_argument("invalid input");
 
         do {
-            if (input[i] < 48 || input[i] > 57) throw std::invalid_argument("invalid input");
-            if (input[i] == ' ') continue;
+            if (c == ' ') continue;
+            if (c < 48 || c > 57) throw std::invalid_argument("invalid input");
             entity.timestamp *= 10;
-            entity.timestamp += input[i] - 48;
-        } while (input[++i] != ')');
+            entity.timestamp += c - 48;
+            c = is.get();
+        } while (c != ')');
 
         return is;
     }

@@ -7,7 +7,7 @@
 
 
 #include <string>
-#include "IConditionParser.h"
+#include "Conditions/IConditionParser.h"
 
 class ICommandHandler {
 public:

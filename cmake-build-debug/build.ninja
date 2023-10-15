@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Project
+# Project: DBLab
 # Configurations: Debug
 # =============================================================================
 
@@ -79,11 +79,53 @@ build CMakeFiles/OSLab2.dir/Entity.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yanta
   OBJECT_DIR = CMakeFiles/OSLab2.dir
   OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir
 
-build CMakeFiles/OSLab2.dir/ConditionParser.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/ConditionParser.cpp || cmake_object_order_depends_target_OSLab2
-  DEP_FILE = CMakeFiles/OSLab2.dir/ConditionParser.cpp.o.d
+build CMakeFiles/OSLab2.dir/Conditions/ConditionParser.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/ConditionParser.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/ConditionParser.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/OSLab2.dir
-  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/ConjunctionCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/ConjunctionCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/ConjunctionCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/ComposedCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/ComposedCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/ComposedCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/DisjunctionCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/DisjunctionCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/DisjunctionCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/VarcharEqualsCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/VarcharEqualsCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/VarcharEqualsCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/NameEqualsCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/NameEqualsCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/NameEqualsCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/SurnameEqualsCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/SurnameEqualsCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/SurnameEqualsCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
+
+build CMakeFiles/OSLab2.dir/Conditions/PatronymicEqualsCondition.cpp.o: CXX_COMPILER__OSLab2_Debug /home/yantar/CLionProjects/OSLab2/Conditions/PatronymicEqualsCondition.cpp || cmake_object_order_depends_target_OSLab2
+  DEP_FILE = CMakeFiles/OSLab2.dir/Conditions/PatronymicEqualsCondition.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OSLab2.dir
+  OBJECT_FILE_DIR = CMakeFiles/OSLab2.dir/Conditions
 
 
 # =============================================================================
@@ -93,7 +135,7 @@ build CMakeFiles/OSLab2.dir/ConditionParser.cpp.o: CXX_COMPILER__OSLab2_Debug /h
 #############################################
 # Link the executable OSLab2
 
-build OSLab2: CXX_EXECUTABLE_LINKER__OSLab2_Debug CMakeFiles/OSLab2.dir/main.cpp.o CMakeFiles/OSLab2.dir/Logger.cpp.o CMakeFiles/OSLab2.dir/Repository.cpp.o CMakeFiles/OSLab2.dir/CommandHandler.cpp.o CMakeFiles/OSLab2.dir/Entity.cpp.o CMakeFiles/OSLab2.dir/ConditionParser.cpp.o
+build OSLab2: CXX_EXECUTABLE_LINKER__OSLab2_Debug CMakeFiles/OSLab2.dir/main.cpp.o CMakeFiles/OSLab2.dir/Logger.cpp.o CMakeFiles/OSLab2.dir/Repository.cpp.o CMakeFiles/OSLab2.dir/CommandHandler.cpp.o CMakeFiles/OSLab2.dir/Entity.cpp.o CMakeFiles/OSLab2.dir/Conditions/ConditionParser.cpp.o CMakeFiles/OSLab2.dir/Conditions/ConjunctionCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/ComposedCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/DisjunctionCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/VarcharEqualsCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/NameEqualsCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/SurnameEqualsCondition.cpp.o CMakeFiles/OSLab2.dir/Conditions/PatronymicEqualsCondition.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/OSLab2.dir
   POST_BUILD = :

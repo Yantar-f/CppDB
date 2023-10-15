@@ -8,7 +8,7 @@
 #include <vector>
 #include "Logger.h"
 #include "Entity.h"
-#include "ICondition.h"
+#include "Conditions/ICondition.h"
 
 class Repository {
 private:

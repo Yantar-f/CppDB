@@ -2,7 +2,7 @@
 #include "Logger.h"
 #include "Repository.h"
 #include "CommandHandler.h"
-#include "ConditionParser.h"
+#include "Conditions/ConditionParser.h"
 
 #define FILE_NAME ("file1")
 

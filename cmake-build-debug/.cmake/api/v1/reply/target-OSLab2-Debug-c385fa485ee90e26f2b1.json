@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 5,
+				"line" : 4,
 				"parent" : 0
 			}
 		]
@@ -51,10 +51,17 @@
 			[
 				0,
 				2,
-				6,
-				8,
-				10,
-				12
+				5,
+				7,
+				9,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26
 			]
 		}
 	],
@@ -89,10 +96,17 @@
 			[
 				0,
 				2,
-				6,
-				8,
-				10,
-				12
+				5,
+				7,
+				9,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26
 			]
 		},
 		{
@@ -102,11 +116,18 @@
 				1,
 				3,
 				4,
-				5,
-				7,
-				9,
+				6,
+				8,
+				10,
 				11,
-				13
+				13,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27
 			]
 		}
 	],
@@ -141,11 +162,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "ICondition.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "Repository.cpp",
 			"sourceGroupIndex" : 0
@@ -174,18 +190,100 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "IConditionParser.h",
+			"path" : "Conditions/ICondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/IConditionParser.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ConditionParser.cpp",
+			"path" : "Conditions/ConditionParser.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "ConditionParser.h",
+			"path" : "Conditions/ConditionParser.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/ConjunctionCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/ConjunctionCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/ComposedCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/ComposedCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/DisjunctionCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/DisjunctionCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/VarcharEqualsCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/VarcharEqualsCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/NameEqualsCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/NameEqualsCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/SurnameEqualsCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/SurnameEqualsCondition.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Conditions/PatronymicEqualsCondition.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Conditions/PatronymicEqualsCondition.h",
 			"sourceGroupIndex" : 1
 		}
 	],
