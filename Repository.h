@@ -18,12 +18,12 @@ private:
 public:
     explicit Repository(const char* filename);
     ~Repository();
-    std::vector<Entity*> get_all();
-    void add(Entity&  entity);
-    Entity* get_by_key(int key);
-    std::vector<Entity*> get_by_condition(ICondition& condition);
-    void delete_all();
-    void delete_by_condition(ICondition& condition);
+    std::vector<Entity*> select_all();
+    std::vector<Entity*> select(ICondition& condition);
+    void insert(Entity&  entity);
+    void remove_all();
+    void remove(ICondition& condition);
+    void update(Entity& updating_entity, ICondition& condition);
 private:
     void initiate_first_free_cell();
     void find_first_free_cell(int i);

@@ -10,7 +10,7 @@
 
 class ConditionParser : public IConditionParser{
 public:
-    ICondition parse(const std::string& condition_statement) override;
+    ICondition* parse(const std::string& condition_statement) override;
 };
 
 

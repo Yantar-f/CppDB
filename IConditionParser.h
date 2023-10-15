@@ -11,7 +11,7 @@
 
 class IConditionParser {
 public:
-    virtual ICondition parse(const std::string& condition_statement) = 0;
+    virtual ICondition* parse(const std::string& condition_statement) = 0;
 };
 
 

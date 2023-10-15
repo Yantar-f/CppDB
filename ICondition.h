@@ -10,6 +10,7 @@
 class ICondition {
 public:
     virtual bool is_matching(Entity* entity) = 0;
+    virtual ~ICondition() = 0;
 };
 
 #endif //OSLAB2_ICONDITION_H

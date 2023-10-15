@@ -12,7 +12,7 @@
 
 class CommandHandler : public ICommandHandler {
 private:
-    static const std::map <std::string, int> command_mapping;
+    static const std::map <std::string, char> command_mapping;
     IConditionParser& condition_parser;
     Repository& repository;
     Logger logger {"CommandHandler"};
