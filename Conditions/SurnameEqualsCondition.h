@@ -10,6 +10,7 @@
 
 class SurnameEqualsCondition : public VarcharEqualsCondition {
 public:
+    SurnameEqualsCondition(std::string comparing_surname);
     bool is_matching(Entity* entity) override;
 };
 

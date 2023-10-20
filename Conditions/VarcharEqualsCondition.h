@@ -8,9 +8,10 @@
 
 #include "ICondition.h"
 
-class VarcharEqualsCondition : ICondition{
+class VarcharEqualsCondition : public ICondition{
 std::string comparing_str;
 protected:
+    VarcharEqualsCondition(std::string comparing_str);
     bool compare(varchar str);
 };
 

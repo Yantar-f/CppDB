@@ -11,6 +11,7 @@
 
 class PatronymicEqualsCondition : public VarcharEqualsCondition{
 public:
+    PatronymicEqualsCondition(std::string comparing_patronymic);
     bool is_matching(Entity* entity) override;
 };
 

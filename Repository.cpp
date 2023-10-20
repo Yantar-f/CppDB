@@ -104,7 +104,7 @@ std::vector<Entity*> Repository::select(ICondition& condition) {
         if (condition.is_matching(tmp_ptr)) entities.push_back(tmp_ptr);
     }
 
-    logger.log_info("entities received");
+    logger.log_info(std::string{"entities received: "}.append(std::to_string(entities.size())).c_str());
     return entities;
 }
 
@@ -171,6 +171,7 @@ void Repository::find_first_free_cell(int i) {
             first_free_cell = i;
             return;
         }
+        ++i;
     }
 
     first_free_cell = NO_CAPACITY;

@@ -4,6 +4,8 @@
 
 #include "VarcharEqualsCondition.h"
 
+VarcharEqualsCondition::VarcharEqualsCondition(std::string comparing_str) : comparing_str(comparing_str) {}
+
 bool VarcharEqualsCondition::compare(varchar str) {
     int i = 0;
 

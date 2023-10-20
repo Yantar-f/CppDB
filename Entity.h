@@ -17,7 +17,7 @@ typedef char varchar[VARCHAR_CAPACITY];
 
 class Entity {
 public:
-    int key {0};
+    long key {0};
     varchar name;
     varchar surname;
     varchar patronymic;
@@ -38,16 +38,14 @@ public:
 
     friend std::istream& operator>>(std::istream& is, Entity& entity) {
         int i = 0, j = 0;
-        char c = is.get();
+        char c;
 
-        while (c == ' ') c = is.get();
+        do {c = is.get();} while (c == ' ');
         if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         if (c != '(') throw std::invalid_argument("invalid input: opening fail");
 
-        c = is.get();
-
-        while (c == ' ') c = is.get();
+        do {c = is.get();} while (c == ' ');
         if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         while (c != ',') {
@@ -63,9 +61,8 @@ public:
         }
 
         j = 0;
-        c = is.get();
 
-        while (c == ' ') c = is.get();
+        do {c = is.get();} while (c == ' ');
         if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         while (c != ',') {
@@ -81,9 +78,8 @@ public:
         }
 
         j = 0;
-        c = is.get();
 
-        while (c == ' ') c = is.get();
+        do {c = is.get();} while (c == ' ');
         if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         while (c != ',') {
@@ -98,9 +94,7 @@ public:
             ++j;
         }
 
-        c = is.get();
-
-        while (c == ' ') c = is.get();
+        do {c = is.get();} while (c == ' ');
         if (c == '\0') throw std::invalid_argument("invalid input: end of line");
 
         entity.timestamp = 0;

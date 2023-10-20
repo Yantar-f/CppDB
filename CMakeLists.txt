@@ -18,12 +18,12 @@ add_executable(
         Conditions/IConditionParser.h
         Conditions/ConditionParser.cpp
         Conditions/ConditionParser.h
-        Conditions/ConjunctionCondition.cpp
-        Conditions/ConjunctionCondition.h
-        Conditions/ComposedCondition.cpp
-        Conditions/ComposedCondition.h
-        Conditions/DisjunctionCondition.cpp
-        Conditions/DisjunctionCondition.h
         Conditions/VarcharEqualsCondition.cpp
         Conditions/VarcharEqualsCondition.h
-        Conditions/NameEqualsCondition.cpp Conditions/NameEqualsCondition.h Conditions/SurnameEqualsCondition.cpp Conditions/SurnameEqualsCondition.h Conditions/PatronymicEqualsCondition.cpp Conditions/PatronymicEqualsCondition.h)
+        Conditions/NameEqualsCondition.cpp
+        Conditions/NameEqualsCondition.h
+        Conditions/SurnameEqualsCondition.cpp
+        Conditions/SurnameEqualsCondition.h
+        Conditions/PatronymicEqualsCondition.cpp
+        Conditions/PatronymicEqualsCondition.h
+        Conditions/TimestampEqualsCondition.cpp Conditions/TimestampEqualsCondition.h Conditions/KeyEqualsCondition.cpp Conditions/KeyEqualsCondition.h Conditions/TimestampBtwnCondition.cpp Conditions/TimestampBtwnCondition.h)
