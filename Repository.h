@@ -14,7 +14,7 @@ class Repository {
 private:
     Logger logger {"Repository"};
     Entity* initial_ptr {nullptr};
-    int first_free_cell {-1};
+    long first_free_cell {-1};
 public:
     explicit Repository(const char* filename);
     ~Repository();
@@ -26,8 +26,8 @@ public:
     void update(Entity& updating_entity, ICondition& condition);
 private:
     void initiate_first_free_cell();
-    void find_first_free_cell(int i);
-    void free_cell(int key);
+    void find_first_free_cell(long i);
+    void free_cell(long key);
 };
 
 #endif //OSLAB2_REPOSITORY_H

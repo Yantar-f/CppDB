@@ -101,7 +101,7 @@ std::vector<Entity*> Repository::select(ICondition& condition) {
     std::vector<Entity*> entities;
 
     for (int i = 0; i < FILE_ENTITY_CAPACITY; ++i, ++tmp_ptr) {
-        if (condition.is_matching(tmp_ptr)) entities.push_back(tmp_ptr);
+        if (tmp_ptr->key != 0 && condition.is_matching(tmp_ptr)) entities.push_back(tmp_ptr);
     }
 
     logger.log_info(std::string{"entities received: "}.append(std::to_string(entities.size())).c_str());
@@ -109,7 +109,7 @@ std::vector<Entity*> Repository::select(ICondition& condition) {
 }
 
 void Repository::remove_all() {
-    for (int i = 0; i < FILE_ENTITY_CAPACITY; ++i) {
+    for (long i = 0; i < FILE_ENTITY_CAPACITY; ++i) {
         if (initial_ptr[i].key != 0) free_cell(i);
     }
 
@@ -121,23 +121,23 @@ void Repository::remove(ICondition& condition) {
     logger.log_info("deleting entities");
 
     Entity* tmp_ptr = initial_ptr;
-    int i = 0;
+    long i = 0, first_free_cell_initiating_range = first_free_cell == -1 ? FILE_ENTITY_CAPACITY : first_free_cell;
 
-    while (i < first_free_cell) {
+    while (i < first_free_cell_initiating_range) {
         if (tmp_ptr->key != 0 && condition.is_matching(tmp_ptr)) {
-            free_cell(tmp_ptr->key);
+            free_cell(i);
+            first_free_cell = i;
             break;
         }
         ++i;
         ++tmp_ptr;
     }
 
-    first_free_cell = i;
     ++i;
     ++tmp_ptr;
 
     while (i < FILE_ENTITY_CAPACITY) {
-        if (tmp_ptr->key != 0 && condition.is_matching(tmp_ptr)) free_cell(tmp_ptr->key);
+        if (tmp_ptr->key != 0 && condition.is_matching(tmp_ptr)) free_cell(i);
         ++i;
         ++tmp_ptr;
     }
@@ -165,7 +165,7 @@ void Repository::initiate_first_free_cell() {
     find_first_free_cell(0);
 }
 
-void Repository::find_first_free_cell(int i) {
+void Repository::find_first_free_cell(long i) {
     while (i < FILE_ENTITY_CAPACITY) {
         if (initial_ptr[i].key == 0) {
             first_free_cell = i;
@@ -178,7 +178,7 @@ void Repository::find_first_free_cell(int i) {
     logger.log_warn("file is completely filled in");
 }
 
-void Repository::free_cell(int key) {
+void Repository::free_cell(long key) {
     Entity* entity = initial_ptr + key;
     entity->key = 0;
     entity->timestamp = 0;
